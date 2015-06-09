@@ -16,38 +16,39 @@
 
 package org.springframework.bus.runner.adapter;
 
-
 /**
  * @author Dave Syer
  * @author Ilayaperumal Gopinathan
  */
-public class OutputChannelSpec extends ChannelSpec {
+public class ChannelSpec {
 
-	private boolean tapped = false;
-	private String tapChannelName;
+	private String name;
+	private String localName;
 
-	protected OutputChannelSpec() {
-		this(DEFAULT_OUTPUT_CHANNEL_NAME);
+	public static final String DEFAULT_INPUT_CHANNEL_NAME = "input";
+
+	public static final String DEFAULT_OUTPUT_CHANNEL_NAME = "output";
+
+	public static final String QUEUE_CHANNEL_PREFIX = "queue";
+
+	protected ChannelSpec() {
+		this(null);
 	}
 
-	public OutputChannelSpec(String localName) {
-		super(localName);
+	public ChannelSpec(String localName) {
+		this.localName = localName;
 	}
 
-	public boolean isTapped() {
-		return this.tapped;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setTapped(boolean tapped) {
-		this.tapped = tapped;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setTapChannelName(String tapChannelName) {
-		this.tapChannelName = tapChannelName;
-	}
-
-	public String getTapChannelName() {
-		return this.tapChannelName==null ? "" : this.tapChannelName;
+	public String getLocalName() {
+		return this.localName;
 	}
 
 }

@@ -30,6 +30,7 @@ import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.bus.runner.adapter.ChannelLocator;
+import org.springframework.bus.runner.adapter.ChannelSpec;
 import org.springframework.bus.runner.adapter.Upstream;
 import org.springframework.bus.runner.adapter.InputChannelSpec;
 import org.springframework.bus.runner.adapter.MessageBusAdapter;
@@ -92,7 +93,7 @@ public class MessageBusAdapterConfiguration {
 		String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
 				this.beanFactory, MessageChannel.class);
 		for (String name : names) {
-			if (name.startsWith("output")) {
+			if (name.startsWith(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME)) {
 				channels.add(new OutputChannelSpec(name));
 			}
 		}
@@ -104,7 +105,7 @@ public class MessageBusAdapterConfiguration {
 		String[] names = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
 				this.beanFactory, MessageChannel.class);
 		for (String name : names) {
-			if (name.startsWith("input")) {
+			if (name.startsWith(ChannelSpec.DEFAULT_INPUT_CHANNEL_NAME)) {
 				channels.add(new InputChannelSpec(name));
 			}
 		}

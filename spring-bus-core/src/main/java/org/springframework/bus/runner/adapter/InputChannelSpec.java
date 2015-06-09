@@ -18,31 +18,17 @@ package org.springframework.bus.runner.adapter;
 
 /**
  * @author Dave Syer
+ * @author Ilayaperumal Gopinathan
  *
  */
-public class InputChannelSpec {
-
-	private String name;
-	private String localName;
+public class InputChannelSpec extends ChannelSpec {
 
 	protected InputChannelSpec() {
-		this(null);
+		this(DEFAULT_INPUT_CHANNEL_NAME);
 	}
 
 	public InputChannelSpec(String localName) {
-		this.localName = localName;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLocalName() {
-		return this.localName;
+		super(localName);
 	}
 
 }

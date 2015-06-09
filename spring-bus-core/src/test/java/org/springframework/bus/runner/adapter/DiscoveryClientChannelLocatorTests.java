@@ -63,18 +63,18 @@ public class DiscoveryClientChannelLocatorTests {
 
 	@Test
 	public void locateInputFromOutput() {
-		OutputChannelSpec output = new OutputChannelSpec("output");
+		OutputChannelSpec output = new OutputChannelSpec();
 		output.setName("foo.0");
 		this.metadata.getOutputChannels().add(output);
-		assertEquals("foo.0", this.locator.locate("input"));
+		assertEquals("foo.0", this.locator.locate(ChannelSpec.DEFAULT_INPUT_CHANNEL_NAME));
 	}
 
 	@Test
 	public void locateOutputFromInput() {
-		InputChannelSpec input = new InputChannelSpec("input");
+		InputChannelSpec input = new InputChannelSpec();
 		input.setName("foo.0");
 		this.metadata.getInputChannels().add(input);
-		assertEquals("foo.0", this.locator.locate("output"));
+		assertEquals("foo.0", this.locator.locate(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME));
 	}
 
 	@SuppressWarnings({ "unchecked" })

@@ -32,7 +32,7 @@ public class DefaultChannelLocatorTests {
 
 	@Test
 	public void oneOutput() throws Exception {
-		assertEquals("group.0", this.locator.locate("output"));
+		assertEquals("group.0", this.locator.locate(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME));
 	}
 
 	@Test

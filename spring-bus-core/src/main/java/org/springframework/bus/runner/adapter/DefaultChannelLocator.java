@@ -33,11 +33,11 @@ public class DefaultChannelLocator implements ChannelLocator {
 
 	@Override
 	public String locate(String name) {
-		String channelName = extractChannelName("input", name, this.module.getInputChannelName());
+		String channelName = extractChannelName(ChannelSpec.DEFAULT_INPUT_CHANNEL_NAME, name, this.module.getInputChannelName());
 		if (channelName!=null) {
 			return channelName;
 		}
-		channelName = extractChannelName("output", name, this.module.getOutputChannelName());
+		channelName = extractChannelName(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME, name, this.module.getOutputChannelName());
 		if (channelName!=null) {
 			return channelName;
 		}
@@ -56,7 +56,7 @@ public class DefaultChannelLocator implements ChannelLocator {
 			if (channelName.contains(":")) {
 				String[] tokens = channelName.split(":", 2);
 				String type = tokens[0];
-				if ("queue".equals(type)) {
+				if (ChannelSpec.QUEUE_CHANNEL_PREFIX.equals(type)) {
 					// omit the type for a queue
 					if (StringUtils.hasText(tokens[1])) {
 						prefix = tokens[1] + ".";
