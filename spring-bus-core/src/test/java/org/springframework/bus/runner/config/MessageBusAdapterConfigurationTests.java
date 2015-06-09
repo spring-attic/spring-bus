@@ -25,10 +25,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.bus.runner.adapter.InputChannelSpec;
+import org.springframework.bus.runner.adapter.ChannelSpec;
 import org.springframework.bus.runner.adapter.MessageBusAdapter;
 import org.springframework.bus.runner.adapter.OutputChannelSpec;
 import org.springframework.bus.runner.config.MessageBusAdapterConfigurationTests.Empty;
@@ -68,7 +69,7 @@ public class MessageBusAdapterConfigurationTests {
 
 	@Test
 	public void oneOutput() throws Exception {
-		this.context.registerSingleton("output", new DirectChannel());
+		this.context.registerSingleton(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME, new DirectChannel());
 		refresh();
 		Collection<OutputChannelSpec> channels = this.adapter.getChannelsMetadata()
 				.getOutputChannels();
@@ -101,7 +102,7 @@ public class MessageBusAdapterConfigurationTests {
 
 	@Test
 	public void twoOutputsWithQueue() throws Exception {
-		this.context.registerSingleton("output", new DirectChannel());
+		this.context.registerSingleton(ChannelSpec.DEFAULT_OUTPUT_CHANNEL_NAME, new DirectChannel());
 		this.context.registerSingleton("output.queue:foo", new DirectChannel());
 		refresh();
 		Collection<OutputChannelSpec> channels = this.adapter.getChannelsMetadata()
@@ -112,9 +113,9 @@ public class MessageBusAdapterConfigurationTests {
 		assertTrue(names.contains("foo.group.0"));
 	}
 
-	private List<String> getChannelNames(Collection<? extends InputChannelSpec> channels) {
+	private List<String> getChannelNames(Collection<? extends ChannelSpec> channels) {
 		List<String> list = new ArrayList<String>();
-		for (InputChannelSpec spec : channels) {
+		for (ChannelSpec spec : channels) {
 			list.add(spec.getName());
 		}
 		return list;
