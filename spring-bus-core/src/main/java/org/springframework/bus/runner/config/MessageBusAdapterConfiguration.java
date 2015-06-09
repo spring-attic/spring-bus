@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.target.LazyInitTargetSource;
 import org.springframework.beans.factory.BeanFactoryUtils;
@@ -30,11 +31,11 @@ import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.bus.runner.adapter.ChannelLocator;
-import org.springframework.bus.runner.adapter.Upstream;
+import org.springframework.bus.runner.adapter.DownstreamModule;
 import org.springframework.bus.runner.adapter.InputChannelSpec;
 import org.springframework.bus.runner.adapter.MessageBusAdapter;
-import org.springframework.bus.runner.adapter.Downstream;
 import org.springframework.bus.runner.adapter.OutputChannelSpec;
+import org.springframework.bus.runner.adapter.UpstreamModule;
 import org.springframework.bus.runner.endpoint.ChannelsEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,11 +61,11 @@ public class MessageBusAdapterConfiguration {
 	private ListableBeanFactory beanFactory;
 
 	@Autowired(required=false)
-	@Upstream
+	@DownstreamModule
 	private ChannelLocator inputChannelLocator;
 
 	@Autowired(required=false)
-	@Downstream
+	@UpstreamModule
 	private ChannelLocator outputChannelLocator;
 
 	@Bean
