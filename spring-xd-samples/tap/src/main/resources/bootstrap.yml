@@ -4,6 +4,7 @@ spring:
     group: tocktap
     name: logger
     index: 0
+    type: sink
     tap:
       group: testtock
       name: ticker

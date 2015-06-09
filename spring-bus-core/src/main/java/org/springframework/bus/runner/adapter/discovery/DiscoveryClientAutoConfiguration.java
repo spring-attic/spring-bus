@@ -21,9 +21,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.bus.runner.adapter.ChannelLocator;
-import org.springframework.bus.runner.adapter.Downstream;
+import org.springframework.bus.runner.adapter.DownstreamModule;
 import org.springframework.bus.runner.adapter.MessageBusAdapter;
-import org.springframework.bus.runner.adapter.Upstream;
+import org.springframework.bus.runner.adapter.UpstreamModule;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.event.HeartbeatEvent;
 import org.springframework.cloud.client.discovery.event.HeartbeatMonitor;
@@ -48,11 +48,11 @@ public class DiscoveryClientAutoConfiguration {
 	private MessageBusAdapter adapter;
 
 	@Autowired(required = false)
-	@Upstream
+	@DownstreamModule
 	private ChannelLocator inputChannelLocator;
 
 	@Autowired(required = false)
-	@Downstream
+	@UpstreamModule
 	private ChannelLocator outputChannelLocator;
 
 	private boolean enabled = false;

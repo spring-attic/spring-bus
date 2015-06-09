@@ -26,7 +26,7 @@ import java.lang.annotation.Target;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
- * Qualifier annotation for a bean relating input channels.
+ * Qualifier annotation for a bean relating output channels.
  *
  * @author Dave Syer
  */
@@ -36,6 +36,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface Downstream {
+public @interface UpstreamModule {
 
 }
