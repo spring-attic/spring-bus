@@ -71,7 +71,9 @@ public class ModuleOptionsPropertySourceInitializer implements
 		ModuleOptionsMetadata resolved = resolver.resolve(getModuleDefinition());
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		for (ModuleOption option : resolved) {
-			map.put(option.getName(), (option.getDefaultValue() == null) ? "" : option.getDefaultValue());
+			if (option.getDefaultValue() != null) {
+				map.put(option.getName(), option.getDefaultValue());
+			}
 		}
 		insert(environment, new MapPropertySource("moduleDefaults", map));
 	}
