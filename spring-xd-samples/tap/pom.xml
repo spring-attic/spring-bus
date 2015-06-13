@@ -49,6 +49,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<excludeGroupIds>org.springframework.xd,org.springframework.boot</excludeGroupIds>
+							<excludeArtifactIds>spring-xd-runner</excludeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
