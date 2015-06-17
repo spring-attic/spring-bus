@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * @author Dave Syer
- *
+ * @author Ilayaperumal Gopinathan
  */
 @ConfigurationProperties("spring.bus")
 @JsonInclude(Include.NON_DEFAULT)
@@ -44,6 +44,8 @@ public class MessageBusProperties {
 	private String inputChannelName;
 
 	private String type = "processor";
+
+	private String location = "file:.";
 
 	private Properties consumerProperties = new Properties();
 
@@ -118,6 +120,14 @@ public class MessageBusProperties {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Properties getConsumerProperties() {

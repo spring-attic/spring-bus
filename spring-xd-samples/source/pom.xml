@@ -27,10 +27,12 @@
 		<dependency>
 			<groupId>org.springframework.bus</groupId>
 			<artifactId>spring-xd-runner</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.xd</groupId>
 			<artifactId>spring-xd-messagebus-redis</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -54,6 +56,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<excludeGroupIds>org.springframework.xd</excludeGroupIds>
+							<excludeArtifactIds>spring-xd-runner</excludeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
