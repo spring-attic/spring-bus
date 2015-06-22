@@ -106,3 +106,18 @@ spring:
 ```
 
 The `spring.bus.tap` section tells the module runner which topic you want to subscribe to. It creates a new group (a tap can't be in the same group as the one it is tapping) and starts a new index count, in case anyone wants to listen downstream.
+
+## Build Spring Bus
+### Pre-requisites
+
+ * Required :
+    * Java 8
+    * Maven
+
+ As of the current release of Spring Bus the dependency on receptor client is not in the repo.  Thus we must build and install it to our local repo.  The following instruction enumerate how to do this:
+ 
+ 1. <code>git clone https://github.com/markfisher/receptor-client.git</code>
+ 2. <code>./gradlew install</code>
+ 
+### Building the project
+ <code>mvn clean install</code>
