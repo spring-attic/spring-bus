@@ -38,18 +38,20 @@ import org.springframework.bus.runner.adapter.OutputChannelBinding;
 import org.springframework.bus.runner.endpoint.ChannelsEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.util.Assert;
 import org.springframework.xd.dirt.integration.bus.MessageBus;
 import org.springframework.xd.dirt.integration.bus.MessageBusAwareRouterBeanPostProcessor;
+import org.springframework.xd.dirt.server.MessageBusExtensionsConfiguration;
 
 /**
  * @author Dave Syer
  *
  */
 @Configuration
-@ImportResource("classpath*:/META-INF/spring-xd/bus/codec.xml")
+@Import(MessageBusExtensionsConfiguration.class)
 @EnableConfigurationProperties(MessageBusProperties.class)
 public class MessageBusAdapterConfiguration {
 
