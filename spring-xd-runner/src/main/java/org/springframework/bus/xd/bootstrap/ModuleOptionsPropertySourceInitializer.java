@@ -106,7 +106,7 @@ public class ModuleOptionsPropertySourceInitializer implements
 	// TODO: allow override of this
 	public DefaultModuleOptionsMetadataResolver defaultResolver() {
 		DefaultModuleOptionsMetadataResolver defaultResolver = new DefaultModuleOptionsMetadataResolver();
-		defaultResolver.setUseParentClassLoader(true);
+		defaultResolver.setShouldCreateModuleClassLoader(false);
 		return defaultResolver;
 	}
 
