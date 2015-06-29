@@ -16,6 +16,8 @@
 
 package org.springframework.bus.xd.bootstrap;
 
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -68,7 +70,7 @@ public class ModuleOptionsPropertySourceInitializer implements
 	public void initialize(ConfigurableApplicationContext applicationContext) {
 		ConfigurableEnvironment environment = applicationContext.getEnvironment();
 		ModuleOptionsMetadataResolver resolver = moduleOptionsMetadataResolver(environment);
-		ModuleOptionsMetadata resolved = resolver.resolve(getModuleDefinition());
+		ModuleOptionsMetadata resolved = resolver.resolve(getModuleDefinition(applicationContext));
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		for (ModuleOption option : resolved) {
 			if (option.getDefaultValue() != null) {
@@ -78,9 +80,18 @@ public class ModuleOptionsPropertySourceInitializer implements
 		insert(environment, new MapPropertySource("moduleDefaults", map));
 	}
 
-	private ModuleDefinition getModuleDefinition() {
+	private ModuleDefinition getModuleDefinition(ConfigurableApplicationContext applicationContext) {
+		String location = "file:.";
+		ClassLoader classLoader = applicationContext.getClassLoader();
+		if (classLoader instanceof URLClassLoader) {
+			URL[] urls = ((URLClassLoader) classLoader).getURLs();
+			String firstUrl = urls[0].toString();
+			if (firstUrl.startsWith("jar:") && firstUrl.endsWith("!/")) {
+				location = firstUrl.substring(4, firstUrl.length() - 2);
+			}
+		}
 		return ModuleDefinitions.simple(module.getName(),
-				ModuleType.valueOf(module.getType()), "file:.");
+				ModuleType.valueOf(module.getType()), location);
 	}
 
 	private void insert(ConfigurableEnvironment environment, MapPropertySource source) {
