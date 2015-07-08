@@ -34,4 +34,14 @@
         </plugins>
       </pluginManagement>
     </build>
+    <dependencies>
+    	 <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.xd</groupId>
+            <artifactId>spring-xd-codec</artifactId>
+        </dependency>
+    </dependencies>
 </project>
