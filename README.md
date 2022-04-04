@@ -1,3 +1,5 @@
+# spring-bus is no longer actively maintained by VMware, Inc.
+
 # Spring Integration: Messaging as a Microservice
 
 This is an experimental project allowing a user to develop and run messaging microservices using Spring Integration and run them locally or in the cloud, or even on Spring XD. It also allows a user to develop and run an XD module locally. Just create `MessageChannels` "input" and/or "output" and add `@EnableMessageBus` and run your app as a Spring Boot app (single application context).  You just need to connect to the physical broker for the bus, which is automatic if the relevant bus implementation is available on the classpath. The sample uses Redis.
